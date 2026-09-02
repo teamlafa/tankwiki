@@ -3,264 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Tank Encyclopedia</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="top">
-    🛡️ Tank Encyclopedia
+<header class="topBar">
+    <div class="logo">
+        🛡️ Tank Encyclopedia
+    </div>
+
+    <button onclick="openProfile()" class="profileBtn">
+        👤
+    </button>
 </header>
 
-<!-- LOGIN -->
-<section id="loginPage" class="auth">
-    <div class="authBox">
-        <h1>Tank Encyclopedia</h1>
-        <p>Akkauntga kiring</p>
 
-        <input id="loginEmail" type="email" placeholder="Email">
-        <input id="loginPassword" type="password" placeholder="Parol">
+<main>
 
-        <button onclick="login()">Kirish</button>
+    <section class="hero">
 
-        <div id="loginMsg"></div>
+        <div>
+            <p class="miniTitle">WORLD OF TANKS</p>
 
-        <button class="link" onclick="showRegister()">
-            Ro‘yxatdan o‘tish
+            <h1>
+                Tanklar<br>
+                <span>Encyclopedia</span>
+            </h1>
+
+            <p class="heroText">
+                Dunyodagi mashhur tanklar haqida
+                tarixiy va texnik ma'lumotlarni o'rganing.
+            </p>
+        </div>
+
+    </section>
+
+
+    <div class="searchArea">
+
+        <div class="searchBox">
+            🔎
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Tank qidirish..."
+                oninput="searchTanks()"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="categories">
+
+        <button onclick="filterCountry('all')">
+            Barchasi
         </button>
-    </div>
-</section>
 
-<!-- REGISTER -->
-<section id="registerPage" class="auth hidden">
-    <div class="authBox">
-        <h1>Akkaunt yaratish</h1>
-
-        <input id="registerEmail" type="email" placeholder="Email">
-        <input id="registerPassword" type="password" placeholder="Parol">
-        <input id="registerConfirm" type="password" placeholder="Parolni qayta kiriting">
-
-        <button onclick="register()">Ro‘yxatdan o‘tish</button>
-
-        <div id="registerMsg"></div>
-
-        <button class="link" onclick="showLogin()">
-            ← Kirish
+        <button onclick="filterCountry('Rossiya')">
+            🇷🇺 Rossiya
         </button>
-    </div>
-</section>
 
-<!-- SITE -->
-<main id="site" class="hidden">
+        <button onclick="filterCountry('Germaniya')">
+            🇩🇪 Germaniya
+        </button>
 
-    <div class="intro">
-        <h1>Tank Encyclopedia</h1>
-        <p>Tanklar tarixi va ma’lumotlarini bir joyda o‘rganing.</p>
-        <small>© 2026 Tank Encyclopedia</small>
-    </div>
+        <button onclick="filterCountry('AQSh')">
+            🇺🇸 AQSh
+        </button>
 
-    <div class="searchBox">
-        🔎
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="Tank qidirish..."
-            oninput="searchTanks()"
-        >
+        <button onclick="filterCountry('Buyuk Britaniya')">
+            🇬🇧 Britaniya
+        </button>
+
+        <button onclick="filterCountry('Fransiya')">
+            🇫🇷 Fransiya
+        </button>
+
     </div>
 
-    <section id="tankList" class="tankList"></section>
+
+    <section>
+
+        <div class="sectionTitle">
+
+            <div>
+                <p>ENCYCLOPEDIA</p>
+                <h2>Mashhur tanklar</h2>
+            </div>
+
+            <span id="tankCount">
+                101 tank
+            </span>
+
+        </div>
+
+
+        <div
+            id="tankList"
+            class="tankGrid"
+        ></div>
+
+    </section>
 
 </main>
 
 
-<!-- PROFIL -->
-<div id="profileModal" class="modal hidden">
-
-    <div class="box profileBox">
-
-        <button class="modalClose" onclick="closeProfile()">×</button>
-
-        <div class="profilePhoto">
-            <img id="profileImage">
-            <span id="profileDefault">👤</span>
-        </div>
-
-        <h2 id="profileName"></h2>
-        <p id="profileEmail"></p>
-
-        <div id="authorBadge" class="authorBadge hidden">
-            👑 MUALLIF
-        </div>
-
-        <label class="upload">
-            📷 Galereyadan rasm tanlash
-
-            <input
-                id="profileFile"
-                type="file"
-                accept="image/*"
-                onchange="chooseProfileImage(event)"
-            >
-        </label>
-
-
-        <!-- PROFIL RASM EDITOR -->
-        <div id="editor" class="editor hidden">
-
-            <p>Rasmni barmog‘ingiz bilan suring</p>
-
-            <div id="cropBox">
-
-                <img
-                    id="editImage"
-                    draggable="false"
-                >
-
-            </div>
-
-            <div class="zoomBox">
-
-                <button onclick="zoomMinus()">−</button>
-
-                <input
-                    id="zoom"
-                    type="range"
-                    min="1"
-                    max="3"
-                    step="0.01"
-                    value="1"
-                    oninput="changeZoom()"
-                >
-
-                <button onclick="zoomPlus()">+</button>
-
-            </div>
-
-            <button
-                class="readyButton"
-                onclick="finishImage()"
-            >
-                ✓ Tayyor
-            </button>
-
-        </div>
-
-        <button class="logout" onclick="logout()">
-            Akkauntdan chiqish
-        </button>
-
-    </div>
-</div>
-
-
 <!-- TANK INFO -->
-<div id="tankModal" class="modal hidden">
 
-    <div class="box tankBox">
+<div
+    id="tankModal"
+    class="modal hidden"
+    onclick="closeModalOutside(event)"
+>
 
-        <button class="modalClose" onclick="closeTank()">×</button>
+    <div class="modalBox">
+
+        <button
+            class="closeBtn"
+            onclick="closeTank()"
+        >
+            ×
+        </button>
 
         <div id="tankDetails"></div>
 
         <div class="tankActions">
 
-            <button onclick="saveTank()">⭐ Saqlash</button>
+            <button onclick="saveTank()">
+                ⭐ Saqlash
+            </button>
 
-            <button onclick="shareTank()">↗ Share</button>
+            <button onclick="shareTank()">
+                ↗ Ulashish
+            </button>
 
-            <button onclick="downloadTank()">↓ Yuklash</button>
+            <button onclick="downloadTank()">
+                ↓ Yuklash
+            </button>
 
         </div>
 
     </div>
+
 </div>
 
 
-<!-- MUALLIF PANELI -->
-<div id="adminModal" class="modal hidden">
+<!-- PROFILE -->
 
-    <div class="box adminBox">
+<div
+    id="profileModal"
+    class="modal hidden"
+>
 
-        <!-- BU X ENDIGINA PANELGA TEGISHLI -->
+    <div class="modalBox profileModal">
+
         <button
-            type="button"
-            class="adminClose"
-            onclick="closeAdmin()"
+            class="closeBtn"
+            onclick="closeProfile()"
         >
             ×
         </button>
 
-        <h2>👑 Muallif paneli</h2>
+        <div class="bigProfile">
+            👤
+        </div>
 
-        <input
-            id="tankName"
-            placeholder="Tank nomi"
+        <h2>Profil</h2>
+
+        <p>
+            Tank Encyclopedia foydalanuvchisi
+        </p>
+
+        <button
+            class="logoutBtn"
+            onclick="closeProfile()"
         >
-
-        <input
-            id="tankCountry"
-            placeholder="Davlati"
-        >
-
-        <input
-            id="tankYear"
-            placeholder="Yili"
-        >
-
-        <textarea
-            id="tankDescription"
-            placeholder="Tank haqida to‘liq ma’lumot"
-        ></textarea>
-
-        <label class="upload">
-            🖼️ Tank rasmini tanlash
-
-            <input
-                id="tankFile"
-                type="file"
-                accept="image/*"
-            >
-        </label>
-
-        <button onclick="addTank()">
-            ➕ Tank qo‘shish
+            Yopish
         </button>
 
     </div>
+
 </div>
 
 
-<!-- BOTTOM NAV -->
-<nav id="bottomNav" class="bottomNav hidden">
+<nav class="bottomNav">
 
     <button onclick="home()">
-        <span>⌂</span>
+        🏠
         <small>Bosh sahifa</small>
     </button>
 
     <button onclick="searchFocus()">
-        <span>⌕</span>
+        🔎
         <small>Qidiruv</small>
     </button>
 
-    <button
-        id="addButton"
-        class="addButton hidden"
-        onclick="openAdmin()"
-    >
-        +
-        <small>Tank</small>
+    <button onclick="home()" class="homeButton">
+        🛡️
     </button>
 
     <button onclick="openProfile()">
-        <span>○</span>
+        👤
         <small>Profil</small>
     </button>
 
     <button onclick="about()">
-        <span>ⓘ</span>
+        ℹ️
         <small>Haqida</small>
     </button>
 
