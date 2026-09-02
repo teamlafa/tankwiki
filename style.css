@@ -1,0 +1,639 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding-bottom: 100px;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: radial-gradient(
+        circle at top,
+        #273329,
+        #090c0a 70%
+    );
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* TOP */
+
+.top {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    padding: 14px;
+    z-index: 100;
+    text-align: center;
+    color: #d4a017;
+    font-weight: bold;
+    background: rgba(25,32,27,.8);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 22px;
+    backdrop-filter: blur(20px);
+}
+
+
+/* LOGIN */
+
+.auth {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 90px 20px;
+}
+
+.authBox {
+    width: 390px;
+    max-width: 95%;
+    padding: 30px;
+    text-align: center;
+    background: rgba(25,32,27,.9);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 25px;
+}
+
+.authBox h1 {
+    color: #d4a017;
+}
+
+.authBox p {
+    color: #929b92;
+}
+
+.authBox input,
+.adminBox input,
+.adminBox textarea {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: 1px solid #394339;
+    border-radius: 12px;
+    outline: none;
+    background: #202820;
+    color: white;
+}
+
+.authBox button,
+.adminBox > button,
+.readyButton {
+    width: 100%;
+    padding: 13px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 12px;
+    background: #d4a017;
+    color: #111;
+    font-weight: bold;
+}
+
+.link {
+    background: transparent !important;
+    color: #d4a017 !important;
+}
+
+#loginMsg,
+#registerMsg {
+    margin-top: 10px;
+    color: #d4a017;
+    font-size: 12px;
+}
+
+
+/* INTRO */
+
+.intro {
+    padding: 125px 20px 15px;
+    text-align: center;
+}
+
+.intro h1 {
+    margin: 0;
+    color: #d4a017;
+    font-size: 34px;
+}
+
+.intro p {
+    color: #929b92;
+    font-size: 13px;
+}
+
+.intro small {
+    color: #666;
+    font-size: 10px;
+}
+
+
+/* SEARCH */
+
+.searchBox {
+    width: 92%;
+    max-width: 600px;
+    margin: 20px auto 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 16px;
+    background: rgba(25,32,27,.65);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 18px;
+    backdrop-filter: blur(20px);
+}
+
+.searchBox input {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+}
+
+
+/* TANK */
+
+.tankList {
+    width: 94%;
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.tankCard {
+    overflow: hidden;
+    cursor: pointer;
+    background: rgba(25,32,27,.8);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 16px;
+}
+
+.tankImage {
+    width: 100%;
+    height: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+}
+
+.tankImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.tankContent {
+    padding: 10px;
+}
+
+.tankContent h2 {
+    margin: 4px 0;
+    color: #d4a017;
+    font-size: 16px;
+}
+
+.tankContent p {
+    margin: 4px 0;
+    color: #aab2aa;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0,0,0,.85);
+    backdrop-filter: blur(10px);
+}
+
+.box {
+    position: relative;
+    width: 440px;
+    max-width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    background: #192019;
+    border: 1px solid #d4a017;
+    border-radius: 25px;
+}
+
+
+/* X */
+
+.modalClose {
+    position: absolute !important;
+
+    top: 10px !important;
+    right: 10px !important;
+
+    width: 40px !important;
+    height: 40px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: none !important;
+    border-radius: 50% !important;
+
+    background: #303830 !important;
+    color: white !important;
+
+    font-size: 26px !important;
+    line-height: 1 !important;
+
+    cursor: pointer;
+
+    z-index: 9999;
+}
+
+.modalClose:hover {
+    background: #d4a017 !important;
+    color: #111 !important;
+}
+
+
+/* ADMIN X */
+
+.adminBox {
+    width: 500px;
+    padding-top: 55px;
+}
+
+.adminClose {
+    position: absolute !important;
+
+    top: 12px !important;
+    right: 12px !important;
+
+    width: 42px !important;
+    height: 42px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: none !important;
+    border-radius: 50% !important;
+
+    background: #303830 !important;
+    color: white !important;
+
+    font-size: 27px !important;
+
+    z-index: 9999;
+}
+
+.adminClose:hover {
+    background: #d4a017 !important;
+    color: #111 !important;
+}
+
+
+/* PROFILE */
+
+.profileBox {
+    text-align: center;
+}
+
+.profilePhoto {
+    width: 120px;
+    height: 120px;
+    margin: auto;
+    position: relative;
+}
+
+.profilePhoto img {
+    width: 100%;
+    height: 100%;
+    display: none;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #d4a017;
+}
+
+#profileDefault {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #303830;
+    font-size: 45px;
+}
+
+.authorBadge {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 5px;
+    border-radius: 20px;
+    background: #d4a017;
+    color: #111;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+
+/* UPLOAD */
+
+.upload {
+    display: block;
+    padding: 13px;
+    margin-top: 18px;
+    border-radius: 12px;
+    background: #303830;
+    cursor: pointer;
+}
+
+.upload input {
+    display: none;
+}
+
+
+/* EDITOR */
+
+.editor {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.editor p {
+    color: #929b92;
+    font-size: 13px;
+}
+
+
+/* CROP BOX */
+
+#cropBox {
+    width: 250px;
+    height: 250px;
+
+    margin: 15px auto;
+
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 50%;
+    border: 3px solid #d4a017;
+
+    background: #080a08;
+
+    touch-action: none;
+}
+
+#editImage {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    max-width: none;
+
+    user-select: none;
+    -webkit-user-drag: none;
+
+    touch-action: none;
+
+    cursor: grab;
+}
+
+#editImage:active {
+    cursor: grabbing;
+}
+
+
+/* ZOOM */
+
+.zoomBox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.zoomBox input {
+    flex: 1;
+}
+
+.zoomBox button {
+    width: 40px;
+    height: 40px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #303830;
+    color: white;
+
+    font-size: 22px;
+}
+
+
+/* READY */
+
+.readyButton {
+    cursor: pointer;
+}
+
+
+/* LOGOUT */
+
+.logout {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 12px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #713838;
+
+    color: white;
+
+    font-weight: bold;
+}
+
+
+/* TANK INFO */
+
+.tankBox {
+    width: 520px;
+}
+
+.tankBox img {
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    background: #111;
+    border-radius: 15px;
+}
+
+.tankBox h1 {
+    color: #d4a017;
+}
+
+.tankBox p {
+    color: #c0c7c0;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+
+/* ACTION */
+
+.tankActions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tankActions button {
+    width: 31%;
+
+    padding: 8px 4px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #303830;
+    color: white;
+
+    font-size: 10px;
+}
+
+
+/* BOTTOM */
+
+.bottomNav {
+    position: fixed;
+
+    bottom: 15px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 500;
+
+    width: 94%;
+    max-width: 560px;
+
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background: rgba(25,32,27,.75);
+
+    border: 1px solid rgba(255,255,255,.13);
+
+    border-radius: 24px;
+
+    backdrop-filter: blur(20px);
+}
+
+.bottomNav button {
+    border: none;
+    background: transparent;
+    color: #9ca49d;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 3px;
+}
+
+.bottomNav span {
+    font-size: 22px;
+}
+
+.bottomNav small {
+    font-size: 9px;
+}
+
+.addButton {
+    width: 52px !important;
+    height: 52px !important;
+
+    margin-top: -22px;
+
+    border-radius: 50% !important;
+
+    background: #d4a017 !important;
+    color: #111 !important;
+
+    font-size: 25px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .tankList {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .tankImage {
+        height: 105px;
+    }
+
+    .tankContent {
+        padding: 7px;
+    }
+
+    .tankContent h2 {
+        font-size: 12px;
+    }
+
+    .tankContent p {
+        font-size: 8px;
+    }
+
+    .box {
+        padding: 25px 18px;
+    }
+
+    .adminBox {
+        padding-top: 60px;
+    }
+
+    #cropBox {
+        width: 260px;
+        height: 260px;
+    }
+}
