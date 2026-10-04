@@ -11,142 +11,101 @@
 
 <body>
 
-<header class="topBar">
+<header class="header">
+
     <div class="logo">
-        🛡️ Tank Encyclopedia
+        <span>🛡️</span>
+        <b>Tank Encyclopedia</b>
     </div>
 
-    <button onclick="openProfile()" class="profileBtn">
+    <button class="profile-btn" onclick="openProfile()">
         👤
     </button>
+
 </header>
+
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Tank qidirish..."
+        oninput="searchTanks()"
+    >
+
+    <span>🔍</span>
+
+</div>
+
+
+<div class="filters">
+
+    <button class="filter active" onclick="filterCountry('all', this)">
+        Barchasi
+    </button>
+
+    <button class="filter" onclick="filterCountry('SSSR', this)">
+        🇷🇺 Rossiya
+    </button>
+
+    <button class="filter" onclick="filterCountry('Germaniya', this)">
+        🇩🇪 Germaniya
+    </button>
+
+    <button class="filter" onclick="filterCountry('AQSh', this)">
+        🇺🇸 AQSh
+    </button>
+
+</div>
 
 
 <main>
 
-    <section class="hero">
+    <div class="section-title">
 
         <div>
-            <p class="miniTitle">WORLD OF TANKS</p>
-
-            <h1>
-                Tanklar<br>
-                <span>Encyclopedia</span>
-            </h1>
-
-            <p class="heroText">
-                Dunyodagi mashhur tanklar haqida
-                tarixiy va texnik ma'lumotlarni o'rganing.
-            </p>
+            <small>ENCYCLOPEDIA</small>
+            <h1>Mashhur tanklar</h1>
         </div>
 
-    </section>
-
-
-    <div class="searchArea">
-
-        <div class="searchBox">
-            🔎
-
-            <input
-                id="searchInput"
-                type="text"
-                placeholder="Tank qidirish..."
-                oninput="searchTanks()"
-            >
-
-        </div>
+        <span id="tankCount">0 tank</span>
 
     </div>
 
 
-    <div class="categories">
-
-        <button onclick="filterCountry('all')">
-            Barchasi
-        </button>
-
-        <button onclick="filterCountry('Rossiya')">
-            🇷🇺 Rossiya
-        </button>
-
-        <button onclick="filterCountry('Germaniya')">
-            🇩🇪 Germaniya
-        </button>
-
-        <button onclick="filterCountry('AQSh')">
-            🇺🇸 AQSh
-        </button>
-
-        <button onclick="filterCountry('Buyuk Britaniya')">
-            🇬🇧 Britaniya
-        </button>
-
-        <button onclick="filterCountry('Fransiya')">
-            🇫🇷 Fransiya
-        </button>
-
-    </div>
-
-
-    <section>
-
-        <div class="sectionTitle">
-
-            <div>
-                <p>ENCYCLOPEDIA</p>
-                <h2>Mashhur tanklar</h2>
-            </div>
-
-            <span id="tankCount">
-                101 tank
-            </span>
-
-        </div>
-
-
-        <div
-            id="tankList"
-            class="tankGrid"
-        ></div>
-
-    </section>
+    <div id="tankContainer" class="tank-grid"></div>
 
 </main>
 
 
-<!-- TANK INFO -->
+<!-- TANK DETAILS -->
 
-<div
-    id="tankModal"
-    class="modal hidden"
-    onclick="closeModalOutside(event)"
->
+<div id="tankModal" class="modal">
 
-    <div class="modalBox">
+    <div class="modal-content">
 
-        <button
-            class="closeBtn"
-            onclick="closeTank()"
-        >
-            ×
-        </button>
+        <button class="close" onclick="closeTank()">×</button>
 
-        <div id="tankDetails"></div>
+        <img id="modalImage" class="modal-image">
 
-        <div class="tankActions">
+        <div class="modal-info">
 
-            <button onclick="saveTank()">
-                ⭐ Saqlash
-            </button>
+            <small id="modalCountry"></small>
 
-            <button onclick="shareTank()">
-                ↗ Ulashish
-            </button>
+            <h2 id="modalName"></h2>
 
-            <button onclick="downloadTank()">
-                ↓ Yuklash
-            </button>
+            <p id="modalYear"></p>
+
+            <p id="modalDescription"></p>
+
+            <div class="buttons">
+
+                <button onclick="saveTank()">♡ Saqlash</button>
+
+                <button onclick="shareTank()">↗ Ulashish</button>
+
+            </div>
 
         </div>
 
@@ -157,35 +116,26 @@
 
 <!-- PROFILE -->
 
-<div
-    id="profileModal"
-    class="modal hidden"
->
+<div id="profileModal" class="modal">
 
-    <div class="modalBox profileModal">
+    <div class="profile-panel">
 
-        <button
-            class="closeBtn"
-            onclick="closeProfile()"
-        >
-            ×
-        </button>
+        <button class="close" onclick="closeProfile()">×</button>
 
-        <div class="bigProfile">
+        <div class="profile-icon">
             👤
         </div>
 
         <h2>Profil</h2>
 
-        <p>
-            Tank Encyclopedia foydalanuvchisi
-        </p>
+        <p>Tank Encyclopedia</p>
 
-        <button
-            class="logoutBtn"
-            onclick="closeProfile()"
-        >
-            Yopish
+        <button class="profile-button">
+            🔐 Kirish
+        </button>
+
+        <button class="profile-button">
+            📝 Ro‘yxatdan o‘tish
         </button>
 
     </div>
@@ -193,30 +143,32 @@
 </div>
 
 
-<nav class="bottomNav">
+<!-- BOTTOM NAV -->
 
-    <button onclick="home()">
+<nav class="bottom-nav">
+
+    <button onclick="goHome()">
         🏠
-        <small>Bosh sahifa</small>
+        <span>Bosh sahifa</span>
     </button>
 
-    <button onclick="searchFocus()">
-        🔎
-        <small>Qidiruv</small>
+    <button onclick="focusSearch()">
+        🔍
+        <span>Qidiruv</span>
     </button>
 
-    <button onclick="home()" class="homeButton">
+    <button class="center-button" onclick="goHome()">
         🛡️
     </button>
 
     <button onclick="openProfile()">
         👤
-        <small>Profil</small>
+        <span>Profil</span>
     </button>
 
-    <button onclick="about()">
+    <button onclick="showAbout()">
         ℹ️
-        <small>Haqida</small>
+        <span>Haqida</span>
     </button>
 
 </nav>
