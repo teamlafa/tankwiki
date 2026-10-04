@@ -3,44 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Tank Encyclopedia</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="header">
-
     <div class="logo">
         <span>🛡️</span>
         <b>Tank Encyclopedia</b>
     </div>
 
-    <button class="profile-btn" onclick="openProfile()">
-        👤
-    </button>
-
+    <button class="profile-btn" onclick="openProfile()">👤</button>
 </header>
 
-
 <div class="search-box">
-
     <input
-        type="text"
         id="searchInput"
+        type="text"
         placeholder="Tank qidirish..."
         oninput="searchTanks()"
     >
-
     <span>🔍</span>
-
 </div>
 
-
 <div class="filters">
-
     <button class="filter active" onclick="filterCountry('all', this)">
         Barchasi
     </button>
@@ -56,30 +44,24 @@
     <button class="filter" onclick="filterCountry('AQSh', this)">
         🇺🇸 AQSh
     </button>
-
 </div>
-
 
 <main>
 
     <div class="section-title">
-
         <div>
             <small>ENCYCLOPEDIA</small>
             <h1>Mashhur tanklar</h1>
         </div>
 
         <span id="tankCount">0 tank</span>
-
     </div>
-
 
     <div id="tankContainer" class="tank-grid"></div>
 
 </main>
 
-
-<!-- TANK DETAILS -->
+<!-- TANK MA'LUMOTI -->
 
 <div id="tankModal" class="modal">
 
@@ -100,11 +82,8 @@
             <p id="modalDescription"></p>
 
             <div class="buttons">
-
                 <button onclick="saveTank()">♡ Saqlash</button>
-
                 <button onclick="shareTank()">↗ Ulashish</button>
-
             </div>
 
         </div>
@@ -113,8 +92,7 @@
 
 </div>
 
-
-<!-- PROFILE -->
+<!-- PROFIL -->
 
 <div id="profileModal" class="modal">
 
@@ -122,9 +100,7 @@
 
         <button class="close" onclick="closeProfile()">×</button>
 
-        <div class="profile-icon">
-            👤
-        </div>
+        <div class="profile-icon">👤</div>
 
         <h2>Profil</h2>
 
@@ -142,8 +118,7 @@
 
 </div>
 
-
-<!-- BOTTOM NAV -->
+<!-- PASTKI MENU -->
 
 <nav class="bottom-nav">
 
@@ -172,7 +147,6 @@
     </button>
 
 </nav>
-
 
 <script src="script.js"></script>
 
