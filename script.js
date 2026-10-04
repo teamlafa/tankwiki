@@ -342,3 +342,22 @@ function showAbout() {
 
 
 showTanks(tanks);
+tank-encyclopedia
+│
+├── index.html
+├── style.css
+├── script.js
+│
+└── images
+    ├── t34.jpg
+    ├── t44.jpg
+    ├── t54.jpg
+    ├── t55.jpg
+    ├── t62.jpg
+    ├── t64.jpg
+    ├── t72.jpg
+    ├── t80.jpg
+    ├── leopard2.jpg
+    ├── tiger1.jpg
+    ├── m1abrams.jpg
+    └── m60.jpg
